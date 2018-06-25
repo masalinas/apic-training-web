@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { BASE_URL, API_VERSION } from './shared/sdk/base.url';
+import { LoopBackConfig, LoggerService } from './shared/sdk/';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +10,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private log: LoggerService) {
+    // configure the loggin service
+    LoopBackConfig.setDebugMode(false); // defaults true
+    this.log.info('Component is Loaded');
+
+    // configure the api back-end
+    LoopBackConfig.setBaseURL(BASE_URL);
+    LoopBackConfig.setApiVersion(API_VERSION);
+  }
 }
