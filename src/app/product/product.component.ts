@@ -13,14 +13,14 @@ import { ProductApi } from '../shared/sdk/services';
 })
 export class ProductComponent implements OnInit {
   // All the types you need already there
-  private products : Product[];
-  private displayProducts: Product[];
+  products : Product[];
+  displayProducts: Product[];
 
-  private sortName = null;
-  private sortValue = null;
+  sortName = null;
+  sortValue = null;
 
-  // Configure LoopBack Once or Individually by Component
   constructor(private productApi: ProductApi) {
+    // Configure LoopBack Once or Individually by Component
     LoopBackConfig.setBaseURL(BASE_URL);
     LoopBackConfig.setApiVersion(API_VERSION);
   }

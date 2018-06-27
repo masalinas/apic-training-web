@@ -1,4 +1,4 @@
-<nz-table #productTable [nzData]="displayProducts">
+<nz-table #productTable [nzData]="displayProducts" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="code">Code</th>
