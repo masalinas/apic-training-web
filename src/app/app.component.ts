@@ -6,8 +6,7 @@ import { LoopBackConfig, LoggerService } from './shared/sdk/';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['../../node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css',
-              './app.component.css']
+  styleUrls: [ './app.component.css']
 })
 export class AppComponent {
   title = 'app';

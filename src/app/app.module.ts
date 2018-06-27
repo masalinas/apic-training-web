@@ -1,17 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+
+/** config App Loopback services **/
 import { SDKBrowserModule } from './shared/sdk/index';
+
+/** config App Components **/
+import { AppRoutingModule } from './app-routing.module';
 import { ProductComponent } from './product/product.component';
 import { OrderComponent } from './order/order.component';
 
+/** config angular i18n **/
+import { CommonModule, registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
 registerLocaleData(es);
 

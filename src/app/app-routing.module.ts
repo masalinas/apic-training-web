@@ -6,7 +6,7 @@ import { ProductComponent }   from './product/product.component';
 import { OrderComponent }   from './order/order.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/product', pathMatch: 'full' },
   { path: 'product', component: ProductComponent },
   { path: 'order', component: OrderComponent }
 ];
