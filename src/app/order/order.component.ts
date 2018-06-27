@@ -27,7 +27,9 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     // recover all orders
-    this.orderApi.find().subscribe((result: Order[]) => {
+    this.orderApi.find({
+      include: [{"relation": "orderLines", "scope": {"include": {"relation": "product"}}}
+      ]}).subscribe((result: Order[]) => {
       this.orders = result;    
       this.displayOrders = [ ...this.orders ]
     });

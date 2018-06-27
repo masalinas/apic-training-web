@@ -1,6 +1,7 @@
-<nz-table #orderTable [nzData]="displayOrders" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
+<nz-table #orderTable [nzData]="displayOrders" [nzPageSize]="50" [nzScroll]="{ y: '500px' }">
     <thead (nzSortChange)="sort($event)" nzSingleSort>
       <tr>
+        <th nzShowExpand></th>
         <th nzShowSort nzSortKey="code">Code</th>
         <th nzShowSort nzSortKey="shippingDate">Shipping Date</th>
         <th nzShowSort nzSortKey="client">Client</th>
@@ -9,12 +10,36 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orderTable.data">
-        <td>{{order.code}}</td>
-        <td>{{order.shippingDate}}</td>
-        <td>{{order.client}}</td>
-        <td>{{order.note}}</td>
-        <td>{{order.status}}</td>
-      </tr>
+      <ng-template ngFor let-data [ngForOf]="orderTable.data">
+        <tr>
+          <td nzShowExpand [(nzExpand)]="data.expand"></td>
+          <td>{{data.code}}</td>
+          <td>{{data.shippingDate}}</td>
+          <td>{{data.client}}</td>
+          <td>{{data.note}}</td>
+          <td>{{data.status}}</td>
+        </tr>
+        <tr [nzExpand]="data.expand">
+            <td></td>
+            <td colspan="5">
+              <nz-table #orderLineTable [nzData]="data.orderLines" [nzShowPagination]="false">
+                  <thead>
+                    <tr>
+                      <th>Line</th>
+                      <th>Product Id</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let orderLine of orderLineTable.data">
+                        <td>{{orderLine.line}}</td>
+                        <td>{{orderLine.product.description}}</td>
+                        <td>{{orderLine.quantity}}</td>
+                      </tr>
+                  </tbody>
+              </nz-table>
+            </td>
+        </tr>
+      </ng-template>
     </tbody>
   </nz-table>
