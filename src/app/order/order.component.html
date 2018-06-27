@@ -1,3 +1,20 @@
-<p>
-  order works!
-</p>
+<nz-table #orderTable [nzData]="displayOrders" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
+    <thead (nzSortChange)="sort($event)" nzSingleSort>
+      <tr>
+        <th nzShowSort nzSortKey="code">Code</th>
+        <th nzShowSort nzSortKey="shippingDate">Shipping Date</th>
+        <th nzShowSort nzSortKey="client">Client</th>
+        <th nzShowSort nzSortKey="note">Note</th>
+        <th nzShowSort nzSortKey="status">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderTable.data">
+        <td>{{order.code}}</td>
+        <td>{{order.shippingDate}}</td>
+        <td>{{order.client}}</td>
+        <td>{{order.note}}</td>
+        <td>{{order.status}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
