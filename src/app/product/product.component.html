@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of productTable.data">
+    <tr *ngFor="let product of displayProducts">
       <td>{{product.code}}</td>
       <td><a target="_blank" href="https://simple.wikipedia.org/wiki/{{product.description}}">{{product.description}}</a></td>
       <td>{{product.price}}</td>
