@@ -1,10 +1,14 @@
+/** import App Angular Modules **/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+/** import Alibaba antd Designer Module **/
 import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 
+/** import main App Component **/
 import { AppComponent } from './app.component';
 
 /** config App Loopback services **/
@@ -12,7 +16,11 @@ import { SDKBrowserModule } from './shared/sdk/index';
 
 /** config App Components **/
 import { AppRoutingModule } from './app-routing.module';
+
+/** import Product View Component **/
 import { ProductComponent } from './product/product.component';
+
+/** import Order View Component **/
 import { OrderComponent } from './order/order.component';
 
 /** config angular i18n **/

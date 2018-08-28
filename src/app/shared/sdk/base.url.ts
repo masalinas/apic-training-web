@@ -1,3 +1,5 @@
-export const BASE_URL = 'http://127.0.0.1:4000';
-//export const BASE_URL = 'https://api.eu.apiconnect.ibmcloud.com/masalinasgancedogmailcom-dev/production/api/orders';
+/** import angular envirotment variables **/
+import { environment } from '../../../environments/environment';
+
+export const BASE_URL = environment.basePath;
 export const API_VERSION = 'api';
