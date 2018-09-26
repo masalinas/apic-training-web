@@ -2,19 +2,19 @@
 
 declare var Object: any;
 export interface ProductInterface {
-  "id": number;
   "code": string;
   "description": string;
   "price": number;
   "active": boolean;
+  "id"?: number;
 }
 
 export class Product implements ProductInterface {
-  "id": number;
   "code": string;
   "description": string;
   "price": number;
   "active": boolean;
+  "id": number;
   constructor(data?: ProductInterface) {
     Object.assign(this, data);
   }
@@ -48,10 +48,6 @@ export class Product implements ProductInterface {
       path: 'products',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'number'
-        },
         "code": {
           name: 'code',
           type: 'string'
@@ -67,6 +63,10 @@ export class Product implements ProductInterface {
         "active": {
           name: 'active',
           type: 'boolean'
+        },
+        "id": {
+          name: 'id',
+          type: 'number'
         },
       },
       relations: {

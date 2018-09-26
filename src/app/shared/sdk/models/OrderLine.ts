@@ -1,26 +1,29 @@
 /* tslint:disable */
 import {
+  Order,
   Product,
   Stock
 } from '../index';
 
 declare var Object: any;
 export interface OrderLineInterface {
-  "id": number;
   "line": number;
   "quantity": number;
+  "id"?: number;
   "orderId"?: number;
   "productId"?: number;
+  order?: Order;
   product?: Product;
   stocks?: Stock[];
 }
 
 export class OrderLine implements OrderLineInterface {
-  "id": number;
   "line": number;
   "quantity": number;
+  "id": number;
   "orderId": number;
   "productId": number;
+  order: Order;
   product: Product;
   stocks: Stock[];
   constructor(data?: OrderLineInterface) {
@@ -56,16 +59,16 @@ export class OrderLine implements OrderLineInterface {
       path: 'orderLines',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'number'
-        },
         "line": {
           name: 'line',
           type: 'number'
         },
         "quantity": {
           name: 'quantity',
+          type: 'number'
+        },
+        "id": {
+          name: 'id',
           type: 'number'
         },
         "orderId": {
@@ -78,6 +81,14 @@ export class OrderLine implements OrderLineInterface {
         },
       },
       relations: {
+        order: {
+          name: 'order',
+          type: 'Order',
+          model: 'Order',
+          relationType: 'belongsTo',
+                  keyFrom: 'id',
+          keyTo: 'id'
+        },
         product: {
           name: 'product',
           type: 'Product',

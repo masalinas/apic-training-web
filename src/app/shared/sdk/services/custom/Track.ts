@@ -9,19 +9,19 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Product } from '../../models/Product';
+import { Track } from '../../models/Track';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `Product` model.
+ * Api services for the `Track` model.
  *
  * **Details**
  *
- * Product Service
+ * Model Tracks
  */
 @Injectable()
-export class ProductApi extends BaseLoopBackApi {
+export class TrackApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -35,9 +35,9 @@ export class ProductApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Product`.
+   * i.e. `Track`.
    */
   public getModelName() {
-    return "Product";
+    return "Track";
   }
 }

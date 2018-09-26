@@ -5,22 +5,22 @@ import {
 
 declare var Object: any;
 export interface OrderInterface {
-  "id": number;
   "code": string;
   "client": string;
-  "shippingDate"?: Date;
   "note"?: string;
+  "shippingDate"?: Date;
   "status": number;
+  "id"?: number;
   orderLines?: OrderLine[];
 }
 
 export class Order implements OrderInterface {
-  "id": number;
   "code": string;
   "client": string;
-  "shippingDate": Date;
   "note": string;
+  "shippingDate": Date;
   "status": number;
+  "id": number;
   orderLines: OrderLine[];
   constructor(data?: OrderInterface) {
     Object.assign(this, data);
@@ -55,10 +55,6 @@ export class Order implements OrderInterface {
       path: 'orders',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'number'
-        },
         "code": {
           name: 'code',
           type: 'string'
@@ -67,16 +63,20 @@ export class Order implements OrderInterface {
           name: 'client',
           type: 'string'
         },
-        "shippingDate": {
-          name: 'shippingDate',
-          type: 'Date'
-        },
         "note": {
           name: 'note',
           type: 'string'
         },
+        "shippingDate": {
+          name: 'shippingDate',
+          type: 'Date'
+        },
         "status": {
           name: 'status',
+          type: 'number'
+        },
+        "id": {
+          name: 'id',
           type: 'number'
         },
       },

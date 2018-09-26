@@ -5,24 +5,19 @@ import { SDKModels } from './SDKModels';
 import { BaseLoopBackApi } from '../core/base.service';
 import { LoopBackConfig } from '../../lb.config';
 import { LoopBackAuth } from '../core/auth.service';
-import { LoopBackFilter,  } from '../../models/BaseModels';
+import { LoopBackFilter, SDKToken, AccessToken } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Order } from '../../models/Order';
+import { Principal } from '../../models/Principal';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { OrderLine } from '../../models/OrderLine';
 
 
 /**
- * Api services for the `Order` model.
- *
- * **Details**
- *
- * Order Service
+ * Api services for the `Principal` model.
  */
 @Injectable()
-export class OrderApi extends BaseLoopBackApi {
+export class PrincipalApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -35,11 +30,11 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Find a related item by id for orderLines.
+   * Find a related item by id for accessTokens.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
-   * @param {any} fk Foreign key for orderLines
+   * @param {any} fk Foreign key for accessTokens
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -47,13 +42,13 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
+   * This usually means the response is a `Principal` object.)
    * </em>
    */
-  public findByIdOrderLines(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public findByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines/:fk";
+    "/principals/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -65,11 +60,11 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Delete a related item by id for orderLines.
+   * Delete a related item by id for accessTokens.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
-   * @param {any} fk Foreign key for orderLines
+   * @param {any} fk Foreign key for accessTokens
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -77,10 +72,10 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyByIdOrderLines(id: any, fk: any, customHeaders?: Function): Observable<any> {
+  public destroyByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines/:fk";
+    "/principals/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -92,11 +87,11 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Update a related item by id for orderLines.
+   * Update a related item by id for accessTokens.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
-   * @param {any} fk Foreign key for orderLines
+   * @param {any} fk Foreign key for accessTokens
    *
    * @param {object} data Request data.
    *
@@ -108,13 +103,13 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
+   * This usually means the response is a `Principal` object.)
    * </em>
    */
-  public updateByIdOrderLines(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateByIdAccessTokens(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines/:fk";
+    "/principals/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -128,9 +123,9 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Queries orderLines of Order.
+   * Queries accessTokens of Principal.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
    * @param {object} filter 
    *
@@ -140,13 +135,13 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
+   * This usually means the response is a `Principal` object.)
    * </em>
    */
-  public getOrderLines(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
+  public getAccessTokens(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines";
+    "/principals/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -158,9 +153,9 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in orderLines of this model.
+   * Creates a new instance in accessTokens of this model.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
    * @param {object} data Request data.
    *
@@ -172,13 +167,13 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
+   * This usually means the response is a `Principal` object.)
    * </em>
    */
-  public createOrderLines(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createAccessTokens(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines";
+    "/principals/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -191,9 +186,9 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Deletes all orderLines of this model.
+   * Deletes all accessTokens of this model.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -201,10 +196,10 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public deleteOrderLines(id: any, customHeaders?: Function): Observable<any> {
+  public deleteAccessTokens(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines";
+    "/principals/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -215,9 +210,9 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Counts orderLines of Order.
+   * Counts accessTokens of Principal.
    *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -229,10 +224,10 @@ export class OrderApi extends BaseLoopBackApi {
    *
    *  - `count` – `{number}` - 
    */
-  public countOrderLines(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
+  public countAccessTokens(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines/count";
+    "/principals/:id/accessTokens/count";
     let _routeParams: any = {
       id: id
     };
@@ -244,102 +239,140 @@ export class OrderApi extends BaseLoopBackApi {
   }
 
   /**
-   * Get Orders by Status Flag with descending order by Shipping Code 
+   * Login a user with username/email and password.
    *
-   * @param {boolean} status Order Status Flag
+   * @param {string} include Related objects to include in the response. See the description of return value for more details.
+   *   Default value: `user`.
+   *
+   *  - `rememberMe` - `boolean` - Whether the authentication credentials
+   *     should be remembered in localStorage across app/browser restarts.
+   *     Default: `true`.
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * Data properties:
+   * El cuerpo de respuesta contiene propiedades de la AccessToken creada durante el inicio de la sesión.
+   * Dependiendo del valor del parámetro `include`, el cuerpo puede contener propiedades adicionales:
+   * 
+   *   - `user` - `U+007BUserU+007D` - Datos del usuario conectado actualmente. (`include=user`)
+   * 
    *
-   *  - `result` – `{object}` - 
    */
-  public getOrdersByStatus(status: any, customHeaders?: Function): Observable<any> {
+  public login(credentials: any, include: any = 'user', rememberMe: boolean = true, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/principals/login";
+    let _routeParams: any = {};
+    let _postBody: any = {
+      credentials: credentials
+    };
+    let _urlParams: any = {};
+    if (typeof include !== 'undefined' && include !== null) _urlParams.include = include;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders)
+      .pipe(
+        map(
+        (response: any) => {
+          response.ttl = parseInt(response.ttl);
+          response.rememberMe = rememberMe;
+          this.auth.setToken(response);
+          return response;
+        }
+      )
+      );
+      return result;
+      
+  }
+
+  /**
+   * Logout a user with access token.
+   *
+   * @param {object} data Request data.
+   *
+   * This method does not accept any data. Supply an empty object.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public logout(customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/principals/logout";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+       _urlParams.access_token = this.auth.getAccessTokenId();
+    this.auth.clear(); 
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Confirm a user registration with email verification token.
+   *
+   * @param {string} uid 
+   *
+   * @param {string} token 
+   *
+   * @param {string} redirect 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public confirm(uid: any, token: any, redirect: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:status/get-orders-by-status";
-    let _routeParams: any = {
-      status: status
-    };
+    "/principals/confirm";
+    let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
+    if (typeof uid !== 'undefined' && uid !== null) _urlParams.uid = uid;
+    if (typeof token !== 'undefined' && token !== null) _urlParams.token = token;
+    if (typeof redirect !== 'undefined' && redirect !== null) _urlParams.redirect = redirect;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
-   * Close Order
-   *
-   * @param {string} code Order Code
+   * Reset password for a user with email.
    *
    * @param {object} data Request data.
    *
-   * This method does not accept any data. Supply an empty object.
+   * This method expects a subset of model properties as request parameters.
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * Data properties:
-   *
-   *  - `result` – `{number}` - 
+   * This method returns no data.
    */
-  public closeOrder(code: any, customHeaders?: Function): Observable<any> {
+  public resetPassword(options: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:code/close-order";
-    let _routeParams: any = {
-      code: code
+    "/principals/reset";
+    let _routeParams: any = {};
+    let _postBody: any = {
+      options: options
     };
-    let _postBody: any = {};
     let _urlParams: any = {};
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
-   * Add a new Order Line Order
+   * Creates a new instance in accessTokens of this model.
    *
-   * @param {string} code Order Code
-   *
-   * @param {string} productCode Product Code
-   *
-   * @param {number} quantity Quantity
-   *
-   * @param {object} data Request data.
-   *
-   * This method does not accept any data. Supply an empty object.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
-   * </em>
-   */
-  public addOrderLine(code: any, productCode: any, quantity: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:code/products/:productCode/:quantity/add-order-line";
-    let _routeParams: any = {
-      code: code,
-      productCode: productCode,
-      quantity: quantity
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Creates a new instance in orderLines of this model.
-   *
-   * @param {any} id Order id
+   * @param {any} id Principal id
    *
    * @param {object} data Request data.
    *
@@ -351,13 +384,13 @@ export class OrderApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Order` object.)
+   * This usually means the response is a `Principal` object.)
    * </em>
    */
-  public createManyOrderLines(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyAccessTokens(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/orders/:id/orderLines";
+    "/principals/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -368,12 +401,76 @@ export class OrderApi extends BaseLoopBackApi {
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
+  /**
+   * @ngdoc method
+   * @name sdk.Principal#getCurrent
+   * @methodOf sdk.Principal
+   *
+   * @description
+   *
+   * Get data of the currently logged user. Fail with HTTP result 401
+   * when there is no user logged in.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   */
+  public getCurrent(filter: LoopBackFilter = {}): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() + "/principals" + "/:id";
+    let id: any = this.auth.getCurrentUserId();
+    if (id == null)
+    id = '__anonymous__';
+    let _routeParams: any = { id: id };
+    let _urlParams: any = {};
+    let _postBody: any = {};
+    if (filter) _urlParams.filter = filter;
+    return this.request(_method, _url, _routeParams, _urlParams, _postBody);
+  }
+  /**
+   * Get data of the currently logged user that was returned by the last
+   * call to {@link sdk.Principal#login} or
+   * {@link sdk.Principal#getCurrent}. Return null when there
+   * is no user logged in or the data of the current user were not fetched
+   * yet.
+   *
+   * @returns object An Account instance.
+   */
+  public getCachedCurrent() {
+    return this.auth.getCurrentUserData();
+  }
+  /**
+   * Get data of the currently logged access tokern that was returned by the last
+   * call to {@link sdk.Principal#login}
+   *
+   * @returns object An AccessToken instance.
+   */
+  public getCurrentToken(): AccessToken {
+    return this.auth.getToken();
+  }
+  /**
+   * @name sdk.Principal#isAuthenticated
+   *
+   * @returns {boolean} True if the current user is authenticated (logged in).
+   */
+  public isAuthenticated() {
+    return !(this.getCurrentId() === '' || this.getCurrentId() == null || this.getCurrentId() == 'null');
+  }
+
+  /**
+   * @name sdk.Principal#getCurrentId
+   *
+   * @returns object Id of the currently logged-in user or null.
+   */
+  public getCurrentId() {
+    return this.auth.getCurrentUserId();
+  }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Order`.
+   * i.e. `Principal`.
    */
   public getModelName() {
-    return "Order";
+    return "Principal";
   }
 }

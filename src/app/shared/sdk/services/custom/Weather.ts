@@ -9,20 +9,19 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Stock } from '../../models/Stock';
+import { Weather } from '../../models/Weather';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Product } from '../../models/Product';
 
 
 /**
- * Api services for the `Stock` model.
+ * Api services for the `Weather` model.
  *
  * **Details**
  *
- * Stock Service
+ * Weather Service
  */
 @Injectable()
-export class StockApi extends BaseLoopBackApi {
+export class WeatherApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -35,40 +34,54 @@ export class StockApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation product.
+   * Returns National Weather Service digital weather forecast data
    *
-   * @param {any} id Stock id
+   * @param {number} latitude Latitude
    *
-   * @param {boolean} refresh 
+   * @param {number} longitude Longitude
    *
-   * @returns {object} An empty reference that will be
+   * @param {string} product Product
+   *
+   * @param {date} startTime Start time
+   *
+   * @param {date} endTime End time
+   *
+   * @param {string} unit Unit
+   *
+   * @param {any} weatherParameters Weather Parameters
+   *
+   * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Stock` object.)
+   * This usually means the response is a `Weather` object.)
    * </em>
    */
-  public getProduct(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getWeatherForecastData(latitude: any = {}, longitude: any = {}, product: any = {}, startTime: any = {}, endTime: any = {}, unit: any = {}, weatherParameters: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/stocks/:id/product";
-    let _routeParams: any = {
-      id: id
-    };
+    "/weathers/get-weather-forecast-data";
+    let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    if (typeof latitude !== 'undefined' && latitude !== null) _urlParams.latitude = latitude;
+    if (typeof longitude !== 'undefined' && longitude !== null) _urlParams.longitude = longitude;
+    if (typeof product !== 'undefined' && product !== null) _urlParams.product = product;
+    if (typeof startTime !== 'undefined' && startTime !== null) _urlParams.startTime = startTime;
+    if (typeof endTime !== 'undefined' && endTime !== null) _urlParams.endTime = endTime;
+    if (typeof unit !== 'undefined' && unit !== null) _urlParams.unit = unit;
+    if (typeof weatherParameters !== 'undefined' && weatherParameters !== null) _urlParams.weatherParameters = weatherParameters;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Stock`.
+   * i.e. `Weather`.
    */
   public getModelName() {
-    return "Stock";
+    return "Weather";
   }
 }

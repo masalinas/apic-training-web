@@ -48,10 +48,13 @@ import { SocketBrowser } from './sockets/socket.browser';
 import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
+import { PrincipalApi } from './services/custom/Principal';
 import { OrderApi } from './services/custom/Order';
 import { OrderLineApi } from './services/custom/OrderLine';
 import { ProductApi } from './services/custom/Product';
 import { StockApi } from './services/custom/Stock';
+import { TrackApi } from './services/custom/Track';
+import { WeatherApi } from './services/custom/Weather';
 /**
 * @module SDKBrowserModule
 * @description
@@ -82,10 +85,13 @@ export class SDKBrowserModule {
         LoggerService,
         SDKModels,
         RealTime,
+        PrincipalApi,
         OrderApi,
         OrderLineApi,
         ProductApi,
         StockApi,
+        TrackApi,
+        WeatherApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

@@ -5,18 +5,18 @@ import {
 
 declare var Object: any;
 export interface StockInterface {
-  "id": number;
   "quantity": number;
   "status": number;
+  "id"?: number;
   "productId"?: number;
   "orderLineId"?: number;
   product?: Product;
 }
 
 export class Stock implements StockInterface {
-  "id": number;
   "quantity": number;
   "status": number;
+  "id": number;
   "productId": number;
   "orderLineId": number;
   product: Product;
@@ -53,16 +53,16 @@ export class Stock implements StockInterface {
       path: 'stocks',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'number'
-        },
         "quantity": {
           name: 'quantity',
           type: 'number'
         },
         "status": {
           name: 'status',
+          type: 'number'
+        },
+        "id": {
+          name: 'id',
           type: 'number'
         },
         "productId": {

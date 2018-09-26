@@ -1,9 +1,12 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
+import { Principal } from '../../models/Principal';
 import { Order } from '../../models/Order';
 import { OrderLine } from '../../models/OrderLine';
 import { Product } from '../../models/Product';
 import { Stock } from '../../models/Stock';
+import { Track } from '../../models/Track';
+import { Weather } from '../../models/Weather';
 
 export interface Models { [name: string]: any }
 
@@ -11,10 +14,13 @@ export interface Models { [name: string]: any }
 export class SDKModels {
 
   private models: Models = {
+    Principal: Principal,
     Order: Order,
     OrderLine: OrderLine,
     Product: Product,
     Stock: Stock,
+    Track: Track,
+    Weather: Weather,
     
   };
 
