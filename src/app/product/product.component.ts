@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BASE_URL, API_VERSION } from '../shared/sdk/base.url';
+import { BASE_URL, API_VERSION, CLIENT_ID, CLIENT_SECRET} from '../shared/sdk/base.url';
 import { LoopBackConfig, LoggerService } from '../shared/sdk/';
 
 import { Product } from '../shared/sdk/models';
@@ -26,8 +26,12 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-      // recover all products
-      this.productApi.find().subscribe((result: Product[]) => {
+      /* recover all products
+      this.productApi.find().subscribe((result: Product[]) => {*/ 
+      this.productApi.find({}, function(headers) {
+                                  headers = headers.append('x-ibm-client-id', CLIENT_ID);
+                                  headers = headers.append('x-ibm-client-secret', CLIENT_SECRET);
+                                  return headers}).subscribe((result: Product[]) => { 
         this.products = result;    
         this.displayProducts = [ ...this.products ]
       });

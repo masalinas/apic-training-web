@@ -1,6 +1,6 @@
 ---
 applications:
-- name: apic-training-web
+- name: apic-training-ui
   memory: 256M
   instances: 1  
   command: node server.js

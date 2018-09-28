@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BASE_URL, API_VERSION } from './shared/sdk/base.url';
+import { BASE_URL, API_VERSION, CLIENT_ID, CLIENT_SECRET} from './shared/sdk/base.url';
 import { LoopBackConfig, LoggerService } from './shared/sdk/';
 
 import { Principal, AccessToken } from './shared/sdk/models';
@@ -28,9 +28,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // auto-login with admin user
+    /*this.principalApi.login({"email": "admin@thingtrack.com", 
+                             "password": "thingtrack"}).subscribe((result: AccessToken) => {*/
     this.principalApi.login({"email": "admin@thingtrack.com", 
-                             "password": "thingtrack"}).subscribe((result: AccessToken) => {
+                             "password": "thingtrack"}, "user", true, 
+                             function(headers) {
+                                  headers = headers.append('x-ibm-client-id', CLIENT_ID);
+                                  headers = headers.append('x-ibm-client-secret', CLIENT_SECRET);
+                                  return headers}).subscribe((result: AccessToken) => {                               
       this.accessToken = result;
     });
-  }
+  } 
 }
