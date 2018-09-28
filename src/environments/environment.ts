@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  basePath: 'http://localhost:4000'
+  basePath: 'http://localhost:4000',
+  clientId: undefined,
+  clientSecret: undefined
 };
 
 /*

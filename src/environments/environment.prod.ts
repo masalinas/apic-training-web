@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  basePath: 'https://apiconnect-3855f7ad-2e33-412a-85bb-80f4b3d8be33.masalinasgancedogmailcom-dev.apic.eu-gb.mybluemix.net'
+  basePath: 'https://api.eu.apiconnect.ibmcloud.com/trainingthingtrackcom-dev/sb',
+  clientId: 'b8525508-49a7-4502-84c4-fa7161c849ba',
+  clientSecret: 'yX8uV7hS1oK7dU4nT1uY0bK3yJ3yI4eB1lM2mJ5dA5xE7mJ2dP'
 };
